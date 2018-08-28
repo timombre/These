@@ -1,0 +1,45 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: reportphelma.aux
+The style file: ieeetr.bst
+Database file #1: biblio.bib
+You've used 11 entries,
+            1876 wiz_defined-function locations,
+            556 strings with 5265 characters,
+and the built_in function-call counts, 3282 in all, are:
+= -- 340
+> -- 116
+< -- 0
++ -- 44
+- -- 33
+* -- 221
+:= -- 457
+add.period$ -- 12
+call.type$ -- 11
+change.case$ -- 10
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 186
+empty$ -- 279
+format.name$ -- 33
+if$ -- 820
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 10
+newline$ -- 37
+num.names$ -- 11
+pop$ -- 19
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 153
+stack$ -- 0
+substring$ -- 209
+swap$ -- 101
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 26
+width$ -- 13
+write$ -- 118

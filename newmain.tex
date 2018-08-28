@@ -1,0 +1,101 @@
+\documentclass[a4paper,11pt]{book}
+\hyphenpenalty 10000
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage[english,french]{babel}
+\usepackage[pdftex]{graphicx}
+%\usepackage[options]{mcode}
+\usepackage{textcomp}
+\usepackage{array}
+\usepackage{subfig}
+\usepackage[left=2.5cm, right=2.5cm, bottom=2.5cm, top=2.5cm]{geometry}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{fancybox}
+\usepackage{color}
+\usepackage{setspace}
+
+
+
+\usepackage{color} % gestion de différentes couleurs
+
+\definecolor{linkcolor}{rgb}{0,0,0.6}% définition de la couleur des liens pdf
+\usepackage[ pdftex,colorlinks=true,
+pdfstartview=FitV,
+linkcolor= linkcolor,
+citecolor= linkcolor,
+urlcolor= linkcolor,
+hyperindex=true,
+hyperfigures=false]
+{hyperref} % fichiers pdf 'intelligents', avec des liens entre les références, etc.
+
+\usepackage{fancyhdr} % entêtes et pieds de pages personnalisés 
+\pagestyle{fancy}
+\fancyhead[L]{\scriptsize \textsc{Etude théorique de la translocation de
+biomolécules à travers un nanopore}}
+\fancyhead[R]{\scriptsize \textsc{Menais Timothée}}
+\fancyfoot[C]{ \thepage} 
+
+
+\begin{document}
+
+
+
+%\selectlanguage{french}
+%\frontmatter
+\pagestyle{plain}
+\include{titre}
+
+\cleardoublepage
+\thispagestyle{empty}
+
+%\pagenumbering{Roman}
+\include{intro}
+
+\tableofcontents
+
+\cleardoublepage
+
+%\mainmatter
+\pagestyle{fancy}
+\include{chapitrepollibre}
+\cleardoublepage
+\include{chapitretranslocation}
+\cleardoublepage
+%\include{experimentals}
+%\cleardoublepage
+%\include{Part1-Fundamentals}
+%\cleardoublepage
+%\include{Part2-Mutations}
+%\cleardoublepage
+%\include{Part3-DNARepair}
+%\cleardoublepage
+%\include{Conclusions}
+%\cleardoublepage
+%\include{Perspectives}
+
+%\backmatter
+%\pagestyle{plain}
+%%\pagenumbering{roman}
+%\nocite{*}
+%\clearpage
+%\include{appendix}
+\bibliography{bibtomerge}
+\bibliographystyle{ieeetr}
+\newpage
+%\listoffigures
+%\addcontentsline{toc}{chapter}{Lists of Figures \& Tables}
+%\listoftables
+%\include{glossary}
+%\addcontentsline{toc}{chapter}{Glossary}
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+%
+%\include{abstract}
+
+
+
+\end{document}

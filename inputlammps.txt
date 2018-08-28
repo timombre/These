@@ -1,0 +1,264 @@
+#
+
+clear
+
+#
+################################################################
+# Notice the number of events  usefull only for conf generation#
+################################################################
+
+variable Nbtrans equal 1000
+variable Nbtrans2 equal ${Nbtrans}+1
+
+
+
+label 	   beginning
+variable   i loop 1 ${Nbtrans2}
+if 	   "${i} >= ${Nbtrans2}" then "jump SELF break"
+
+####################################
+#        Some conditions           #
+####################################
+
+
+
+units      lj
+dimension  3
+boundary   s s s
+newton     off
+atom_style bond
+
+####################################
+#        what should be read       #
+####################################
+
+#un fichier bash extérieur remplace "confnumber" par un nombre
+
+read_restart   ./conf/restarconfnumber
+
+##########################################
+# Defining bonds and steric interactions #
+##########################################
+
+
+bond_style fene
+pair_style    lj/cut/opt 1.122462048309370
+pair_modify   shift yes 
+special_bonds fene 
+
+# facteur utilisé pour jouer sur l'élasticité
+variable lengthfactor equal 1.81786 
+
+variable R_0 equal 1.5
+variable R_03 equal 1.0*${lengthfactor}
+
+variable sigma_chain      equal 1.0
+variable sigma_azote      equal 1.5
+variable sigma_wall      equal (1/3)*${lengthfactor}
+variable sigma_wallchain      equal 1.0
+variable sigma_wallazote      equal 1.25
+variable R_01 equal  ${R_0}*${sigma_chain}
+variable sigma_chainazote  equal (${sigma_chain}+${sigma_azote})/2
+variable R_02 equal  ${R_0}*${sigma_chainazote}
+variable cutoff_chain     equal (2^(1/6))*${sigma_chain}
+variable cutoff_chainazote     equal (2^(1/6))*${sigma_chainazote}
+variable cutoff_azote     equal (2^(1/6))*${sigma_azote}
+variable cutoff_wall     equal (2^(1/6))*${sigma_wall}
+variable cutoff_wallchain equal (2^(1/6))*${sigma_wallchain}
+variable cutoff_wallazote equal (2^(1/6))*${sigma_wallazote}
+
+bond_coeff 1 30.0 ${R_01} 1.0 ${sigma_chain}
+bond_coeff 2 30.0 ${R_02} 1.0 ${sigma_chainazote}
+bond_coeff 3 1500.0 ${R_03} 1.0 ${sigma_wall}
+
+ 
+pair_coeff *4  *4 1.0  ${sigma_chain}     ${cutoff_chain}
+pair_coeff 5  5 1.0  ${sigma_azote}     ${cutoff_azote}
+pair_coeff *4  5 1.0  ${sigma_chainazote}     ${cutoff_chainazote}
+pair_coeff  6* 6* 1.0  ${sigma_wall}     ${cutoff_wall}
+pair_coeff *4  6* 1.0  ${sigma_wallchain} ${cutoff_wallchain}
+pair_coeff 5  6* 1.0  ${sigma_wallazote} ${cutoff_wallazote}
+
+
+###################
+# Defining groups #
+###################
+
+group polymer      type 1 2 3 4 5
+group chain	   type 1 2 3 4
+group nitrogen     type 5
+group sugar        type 4
+group phosphate    type 3
+group wall         type 6 7 8 9
+# Extrémitées maintenues de la membrane
+group fixedcarbon	type 7
+group dynamical    type 2 3 4 5
+group walldynamic  type 6 8 9
+group bead       type 1
+
+# moving 1 sert à l'équilibration initiale
+group moving1       type 2 3 4 5 6 8 9 
+group moving2       type 1 2 3 4 5 6 8 9 
+
+
+###################
+# Defining areas  #
+###################
+
+
+#
+region cis block INF INF INF 0 INF INF units box
+region trans block INF INF 0 INF INF INF units box
+
+# Zone devant être vide pour considérer la translocation comme finie
+region safetycylinderglob cylinder y 0 0 5.0 -5.0 0.3 units box
+
+   
+#######################
+# Defining parameters #
+#######################    
+
+mass *5  1.0
+mass 5*  1.0
+
+
+variable temp_wall         equal 0.01       # 0.003
+#
+variable temp              equal 1.5
+variable times_step        equal 5e-3
+variable lambda	           equal 1
+variable longer            equal 50000
+variable thermalisation    equal 5000
+
+#
+variable mythermo      equal 10000
+variable myout         equal 100
+variable mystep        equal step
+variable step_restart  equal ${longer}/5
+#
+neigh_modify every 1 delay 0 check yes
+#
+
+thermo_style custom etotal ke temp pe ebond eangle edihed
+ eimp evdwl ecoul elong press v_frightdump 
+thermo_modify format float %15.10f
+thermo        ${mythermo}
+#
+
+#
+
+#####################################
+# fix equations to solve and forces #
+#####################################
+
+run_style    verlet
+
+fix          microcanonic moving2 nve
+
+fix poential bead setforce 0.0 0.0 0.0
+
+
+fix rescaletemp dynamical langevin ${temp} ${temp}
+ ${lambda} 3617191+${i} zero yes
+fix rescaletempwall walldynamic langevin ${temp_wall}
+ ${temp_wall} ${lambda} 97969448+${i} zero yes
+
+run ${myout}
+
+
+######################################################################
+# Cas 1: Partie concernant la generation de configurations initiales #
+######################################################################
+
+
+label begloop
+
+run ${longer}
+
+
+write_restart ./conf/restartconf${i}
+
+next i
+if 	   "${i} >= ${Nbtrans2}" then "jump SELF break" 
+
+run 1
+
+jump SELF begloop
+
+label break
+
+
+
+
+###########################
+# Cas 2 translocation     #
+###########################
+
+reset timestep
+label again
+
+#un fichier bash extérieur remplace "forcevalue" par un nombre
+
+fix potential bead addforce 0.0 forcevalue 0.0
+
+
+#
+
+############################
+# define variable for test #
+############################
+
+variable polcyl equal count(polymer,safetycylinderglob)
+
+variable polcis equal count(polymer,cis)
+variable poltrans equal count(polymer,trans)
+
+
+run ${myout}
+
+
+unfix potential
+
+##########################################
+# Checking if the translocation is over  #
+##########################################
+
+label begloop
+
+# exit through the good side ?
+if      "${polcyl} == 0 && ${polcis} < ${poltrans} && ${testdump}>0.0 " then &
+         "fix timesprint all print 1 '' title ${mystep} 
+append timesforcevalue.dat" &
+         "fix chronoprint all print 1 '' title 1 append chronoforcevalue.dat" &
+	 "run 0" &
+	 "unfix timesprint" &
+	 "unfix chronoprint" &
+	 "variable success equal ${success}+1" &
+	 "fix failureprint all print 1 '' title ${failure} 
+ append failureforcevalue.dat" &
+	 "run 0" &
+	 "unfix failureprint" &
+	 "jump SELF break" 
+
+# exit through the wrong side ?
+if       "${polcyl} == 0 && ${polcis} > ${poltrans} && ${testdump}<0.0 " then &
+	 "variable failure equal ${failure}+1" &
+         "fix chronoprint all print 1 '' title 0 append chronoforcevalue.dat" &
+	 "run 0" &
+	 "unfix chronoprint" & 
+	 "fix failureprint all print 1 '' title ${failure} 
+append failureforcevalue.dat screen no" &
+	 "run 0" &
+	 "unfix failureprint" &
+	 "jump SELF break"
+
+jump SELF again
+
+label break
+
+
+clear
+
+
+
+

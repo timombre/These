@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: ieeetr.bst
+A level-1 auxiliary file: titre.aux
+A level-1 auxiliary file: abstract.aux
+Database file #1: bibtomerge.bib
+Warning--empty institution in Goodwin2015
+Warning--empty institution in Urban2015
+You've used 200 entries,
+            1876 wiz_defined-function locations,
+            1678 strings with 38137 characters,
+and the built_in function-call counts, 58327 in all, are:
+= -- 5943
+> -- 2418
+< -- 0
++ -- 891
+- -- 691
+* -- 4329
+:= -- 8107
+add.period$ -- 216
+call.type$ -- 200
+change.case$ -- 191
+chr.to.int$ -- 0
+cite$ -- 202
+duplicate$ -- 2918
+empty$ -- 4909
+format.name$ -- 691
+if$ -- 14169
+int.to.chr$ -- 0
+int.to.str$ -- 200
+missing$ -- 192
+newline$ -- 618
+num.names$ -- 196
+pop$ -- 424
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 2538
+stack$ -- 0
+substring$ -- 4065
+swap$ -- 1516
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 549
+width$ -- 203
+write$ -- 1948
+(There were 2 warnings)

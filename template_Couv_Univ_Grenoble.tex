@@ -1,0 +1,64 @@
+% la ligne ci-dessous est à insérer obligatoirement dans le préambule du document avant \begin{document}
+
+%\usepackage[a4paper]{meta-donnees}
+
+
+% les lignes en bas sont à insérer obligatoirement après \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%             Commandes Meta-données               %%
+%%   à renseigner par les auteurs pour générer      %%
+%%     la couverture modèle Univ. Grenoble          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%      Fichier encodé au format ISO-8859-16        %%
+
+%\Sethpageshift{???mm}   %%optionnel : à décommenter si besoin pour ajout d'espace afin de center la couvérture horizontalement (valeur par défaut est -5.5mm)
+%\Setvpageshift{???mm}   %%optionnel : à décommenter si besoin pour ajout d'espace afin de center la couvérture verticalement (valeur par défaut est -15.5mm)
+
+
+%\Universite{}    %%optionnel : à décommenter et à renseigenr si vous voulez changer le non d'université
+%\Grade{}         %%optionnel : à décommenter et à renseigenr si vous voulez changer le grade
+\Specialite{Physique Th\'eorique}
+\Arrete{7 ao\^{u}t 2006}
+\Auteur{Timoth\'ee MENAIS}
+\Directeur{Arnaud BUHOT}
+\CoDirecteur{Stefano MOSSA}    %%optionnel : à décommenter et à renseigenr si présence d'un Co-directeur de thèse
+\Laboratoire{CEA Grenoble\\
+Institut Nanosciences et Cryog\'enie (INAC)\\
+\footnotesize{Service: Structures et Propri\'et\'es d'Architectures Mol\'eculaires (SPRaM)
+\\
+Groupe: Chimie pour la Reconnaissance et l'Etude des Assemblages\\
+ Biologiques (CREAB)}}
+\EcoleDoctorale{l'\'Ecole doctorale de Physique}         
+\Titre{Etude th\'eorique de la translocation de
+  biomol\'ecules \`a travers une membrane fine}
+%\Soustitre{}      %%optionnel : à décommenter et à renseigenr si présence d'un sous-titre de thèse
+\Depot{21 janvier 2016}       
+
+
+
+
+% Commande pour création de nouvelles catégories dans le jury:
+
+%\UGTNewJuryCategory{...NomDeLaCategorie...}{...Definition...}
+
+% Exemple \UGTNewJuryCategory{UGTFamille}{Membre de la famille} que nous ajoutons dans la commande \Jury ci-dessous sous la forme \UGTFamille{Jean Rousseau}{(...titre_et_affiliation...s'il_y_en_a...)}
+
+
+\Jury{
+\UGTPresident{M.Bertrand FOURCADE}{Professeur \`a l'universit\'e Joseph Fourrier (Grenoble)}
+
+
+\UGTRapporteur{M.Nicolas DESTAINVILLE}{Professeur \`a l'universit\'e Paul Sabatier (Toulouse)}  %% 1er rapporteur
+\UGTRapporteur{M.Enrico CARLON}{Professeur \`a l'universit\'e Ku Leuven (Leuven, Belgique)}  %% second rapporteur
+ 
+\UGTExaminateur{M.Andrea PARMEGGIANI}{Directeur de recherche \`a l'universit\'e Montpellier II}     %% 1er examinateur
+ %% 3ème examinateur
+
+\UGTDirecteur{M.Arnaud BUHOT}{Ing\'enieur de recherche au CEA Grenoble}      %% Directeur de thèse
+\UGTCoDirecteur{M.Stefano MOSSA}{Ing\'enieur de recherche au CEA Grenoble}     %% Co-Directeur de thèse s'il y en a
+
+}
+
+\MakeUGthesePDG    %% très important pour générer la couvérture de thèse
+

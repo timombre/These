@@ -1,0 +1,19 @@
+% This file was created with JabRef 2.10b2.
+% Encoding: UTF-8
+
+
+@Article{kasianowicz,
+  Title                    = {Characterization of individual polynucleotide molecules using a membrane channel},
+  Author                   = {Kasianowicz, John J. and Brandin, Eric and Branton, Daniel and Deamer, David W.},
+  Journal                  = {Proceedings of the National Academy of Sciences},
+  Year                     = {1996},
+  Number                   = {24},
+  Pages                    = {13770-13773},
+  Volume                   = {93},
+
+  Eprint                   = {http://www.pnas.org/content/93/24/13770.full.pdf+html},
+  Owner                    = {tm233448},
+  Timestamp                = {2015.05.12},
+  Url                      = {http://www.pnas.org/content/93/24/13770.abstract}
+}
+

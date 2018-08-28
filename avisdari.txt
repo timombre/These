@@ -1,0 +1,30 @@
+Avis 2014
+
+ Dossier : t2014077221
+- Responsable : Arnaud BUHOT
+- Titre du projet : Coarse grain MD simulations of DNA translocation through
+ a nano-pore in a mono-atomic graphene sheet
+- Avis scientifique : A
+- Avis technique : A
+- Commentaire : Projet interessant, tres bien decrit.
+
+
+- Heures demandées TGCC Curie_nf : 60 000
+- Heures accordées TGCC Curie_nf : 48 000
+
+Avis 2015
+
+- Dossier : t2015077221
+- Responsable : Arnaud BUHOT
+- Titre du projet : Coarse grain MD simulations of DNA translocation through
+ a nano-pore in a mono-atomic graphene sheet
+- Avis scientifique : A
+- Avis technique : A
+- Commentaire : Ce projet concerne l'étude de la translocation d'ADN à travers
+ des nanopores de graphène par dynamique moléculaire de Langevin. A part une
+ confusion entre acide aminé et nucléotide, le projet est très bien rédigé et 
+la demande d'heure est clairement justifiée.
+
+
+- Heures demandées TGCC Curie_nf : 48 000
+- Heures accordées TGCC Curie_nf : 48 000
