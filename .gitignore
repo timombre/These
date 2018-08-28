@@ -1,0 +1,11 @@
+main.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.maf
+*.lof
+*.mtc*
+*.blg
+*.synctex.gz
+*.bbl
